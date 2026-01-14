@@ -1,55 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Caleb Sung - Resume | Stony Brook University CS Student">
-    <meta name="keywords" content="Caleb Sung, 성시훈, Resume, CV, Stony Brook University, Computer Science">
+    <meta name="description" content="성시훈 - 이력서 | 스토니브룩 대학교 컴퓨터과학과 학생">
+    <meta name="keywords" content="성시훈, Caleb Sung, 이력서, 스토니브룩 대학교, 컴퓨터과학">
     <meta name="author" content="Caleb Sung">
-    <link rel="canonical" href="https://sihoonsung.com/resume.html">
-    <title>Caleb Sung | Resume</title>
+    <link rel="canonical" href="https://sihoonsung.com/resume-ko.html">
+    <title>성시훈 | 이력서</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .lang-switcher {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-left: auto;
-            padding: 0.5rem 1rem;
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            font-size: 0.875rem;
-        }
-
-        .lang-switcher a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .lang-switcher a.active {
-            color: var(--accent-gold);
-            font-weight: 600;
-        }
-
-        .lang-switcher a:hover {
-            color: var(--primary-dark);
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        @media (max-width: 768px) {
-            .lang-switcher {
-                margin-left: 0;
-                margin-top: 1rem;
-            }
-        }
-    </style>
     <style>
         .resume-page {
             margin-top: 80px;
@@ -225,24 +188,33 @@
             color: var(--accent-gold);
         }
 
-        .download-btn {
-            display: inline-flex;
+        .lang-switcher {
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--accent-gold);
-            color: var(--primary-dark);
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-left: auto;
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            font-size: 0.875rem;
         }
 
-        .download-btn:hover {
-            background: #e5c84a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        .lang-switcher a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher a.active {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .lang-switcher a:hover {
+            color: var(--primary-dark);
+            background: rgba(212, 175, 55, 0.1);
         }
 
         @media (max-width: 768px) {
@@ -284,29 +256,34 @@
             .skills-list {
                 grid-template-columns: 1fr;
             }
+
+            .lang-switcher {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">Caleb Sung</div>
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <div class="nav-brand">성시훈</div>
+            <button class="nav-toggle" aria-label="메뉴 토글">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index-ko.html">홈</a></li>
+                <li><a href="index-ko.html#about">소개</a></li>
+                <li><a href="resume-ko.html">이력서</a></li>
+                <li><a href="index-ko.html#skills">기술</a></li>
+                <li><a href="index-ko.html#projects">프로젝트</a></li>
+                <li><a href="index-ko.html#contact">연락처</a></li>
                 <li class="lang-switcher">
-                    <a href="resume.html" class="active">EN</a>
+                    <a href="resume.html">EN</a>
                     <span>|</span>
-                    <a href="resume-ko.html">KO</a>
+                    <a href="resume-ko.html" class="active">KO</a>
                 </li>
             </ul>
         </div>
@@ -314,14 +291,14 @@
 
     <div class="resume-page">
         <div class="container">
-            <a href="index.html" class="back-link">
+            <a href="index-ko.html" class="back-link">
                 <i class="fas fa-arrow-left"></i>
-                Back to Home
+                홈으로 돌아가기
             </a>
 
             <div class="resume-header">
                 <h1>Caleb Sung / 성시훈</h1>
-                <p class="subtitle">Computer Science Student</p>
+                <p class="subtitle">컴퓨터과학과 학생</p>
                 <div class="contact-info">
                     <a href="mailto:sihoon.sung@stonybrook.edu">
                         <i class="fas fa-envelope"></i> sihoon.sung@stonybrook.edu
@@ -338,20 +315,20 @@
             <div class="resume-content">
                 <!-- Education Section -->
                 <div class="resume-section">
-                    <h2 class="resume-section-title">Education</h2>
+                    <h2 class="resume-section-title">학력</h2>
                     <div class="resume-item">
                         <div class="resume-item-header">
                             <div>
-                                <h3 class="resume-item-title">Stony Brook University</h3>
-                                <p class="resume-item-subtitle">Bachelor of Science in Computer Science</p>
+                                <h3 class="resume-item-title">스토니브룩 대학교</h3>
+                                <p class="resume-item-subtitle">컴퓨터과학 학사</p>
                             </div>
-                            <span class="resume-item-date">2021 - Present</span>
+                            <span class="resume-item-date">2021 - 현재</span>
                         </div>
                         <div class="resume-item-description">
-                            <p>Pursuing a degree in Computer Science with focus on algorithms, data structures, software engineering, and system design. Actively engaged in coursework and projects that build strong technical foundations.</p>
+                            <p>알고리즘, 자료구조, 소프트웨어 엔지니어링, 시스템 설계에 중점을 둔 컴퓨터과학 학위를 취득 중입니다. 강한 기술적 기반을 구축하는 강의 및 프로젝트에 적극적으로 참여하고 있습니다.</p>
                             <ul>
-                                <li>Relevant Coursework: Data Structures, Algorithms, Software Engineering, System Design, Operating Systems</li>
-                                <li>Maintaining strong academic performance while working on personal projects</li>
+                                <li>관련 강의: 자료구조, 알고리즘, 소프트웨어 엔지니어링, 시스템 설계, 운영체제</li>
+                                <li>개인 프로젝트를 진행하면서 우수한 학업 성적 유지</li>
                             </ul>
                         </div>
                     </div>
@@ -359,22 +336,22 @@
 
                 <!-- Experience & Projects Section -->
                 <div class="resume-section">
-                    <h2 class="resume-section-title">Experience & Projects</h2>
+                    <h2 class="resume-section-title">경력 및 프로젝트</h2>
                     
                     <div class="resume-item">
                         <div class="resume-item-header">
                             <div>
-                                <h3 class="resume-item-title">Algorithm Problem Solving</h3>
-                                <p class="resume-item-subtitle">Personal Project</p>
+                                <h3 class="resume-item-title">알고리즘 문제 해결</h3>
+                                <p class="resume-item-subtitle">개인 프로젝트</p>
                             </div>
-                            <span class="resume-item-date">2024 - Present</span>
+                            <span class="resume-item-date">2024 - 현재</span>
                         </div>
                         <div class="resume-item-description">
-                            <p>Continuously solving algorithmic challenges to enhance problem-solving skills and coding proficiency across various platforms.</p>
+                            <p>다양한 플랫폼에서 문제 해결 능력과 코딩 실력을 향상시키기 위해 알고리즘 도전 과제를 지속적으로 해결하고 있습니다.</p>
                             <ul>
-                                <li>Regular practice on competitive programming platforms</li>
-                                <li>Focus on optimization and efficient algorithm design</li>
-                                <li>Building a comprehensive collection of solutions</li>
+                                <li>경쟁 프로그래밍 플랫폼에서 정기적인 연습</li>
+                                <li>최적화 및 효율적인 알고리즘 설계에 중점</li>
+                                <li>포괄적인 솔루션 컬렉션 구축</li>
                             </ul>
                         </div>
                     </div>
@@ -382,17 +359,17 @@
                     <div class="resume-item">
                         <div class="resume-item-header">
                             <div>
-                                <h3 class="resume-item-title">Connected Components Project</h3>
-                                <p class="resume-item-subtitle">CSE373 Course Project</p>
+                                <h3 class="resume-item-title">연결 성분 프로젝트</h3>
+                                <p class="resume-item-subtitle">CSE373 강의 프로젝트</p>
                             </div>
                             <span class="resume-item-date">2024</span>
                         </div>
                         <div class="resume-item-description">
-                            <p>Developed a graph algorithm-based program for analyzing connected components, implementing efficient traversal and analysis techniques.</p>
+                            <p>연결 성분을 분석하기 위한 그래프 알고리즘 기반 프로그램을 개발하여 효율적인 순회 및 분석 기법을 구현했습니다.</p>
                             <ul>
-                                <li>Implemented graph traversal algorithms (DFS, BFS)</li>
-                                <li>Optimized for performance with large datasets</li>
-                                <li>Applied data structures knowledge to solve real-world problems</li>
+                                <li>그래프 순회 알고리즘 구현 (DFS, BFS)</li>
+                                <li>대용량 데이터셋에 대한 성능 최적화</li>
+                                <li>실제 문제 해결을 위한 자료구조 지식 적용</li>
                             </ul>
                         </div>
                     </div>
@@ -400,10 +377,10 @@
 
                 <!-- Technical Skills Section -->
                 <div class="resume-section">
-                    <h2 class="resume-section-title">Technical Skills</h2>
+                    <h2 class="resume-section-title">기술 스택</h2>
                     <div class="skills-list">
                         <div class="skill-category">
-                            <h4>Programming Languages</h4>
+                            <h4>프로그래밍 언어</h4>
                             <ul>
                                 <li>Python</li>
                                 <li>Java</li>
@@ -412,21 +389,21 @@
                             </ul>
                         </div>
                         <div class="skill-category">
-                            <h4>Web Technologies</h4>
+                            <h4>웹 기술</h4>
                             <ul>
                                 <li>HTML5</li>
                                 <li>CSS3</li>
                                 <li>JavaScript</li>
-                                <li>Responsive Design</li>
+                                <li>반응형 디자인</li>
                             </ul>
                         </div>
                         <div class="skill-category">
-                            <h4>Tools & Technologies</h4>
+                            <h4>도구 및 기술</h4>
                             <ul>
                                 <li>Git & GitHub</li>
-                                <li>Data Structures</li>
-                                <li>Algorithms</li>
-                                <li>Software Engineering</li>
+                                <li>자료구조</li>
+                                <li>알고리즘</li>
+                                <li>소프트웨어 엔지니어링</li>
                             </ul>
                         </div>
                     </div>
@@ -434,10 +411,10 @@
 
                 <!-- Achievements Section -->
                 <div class="resume-section">
-                    <h2 class="resume-section-title">Achievements & Certifications</h2>
+                    <h2 class="resume-section-title">성과 및 인증서</h2>
                     <div class="resume-item">
                         <div class="resume-item-description">
-                            <p>To be updated</p>
+                            <p>추가 예정</p>
                         </div>
                     </div>
                 </div>
@@ -447,7 +424,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Caleb Sung. All rights reserved.</p>
+            <p>&copy; 2025 성시훈. All rights reserved.</p>
         </div>
     </footer>
 
