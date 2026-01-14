@@ -62,6 +62,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .nav-brand {
@@ -70,6 +71,26 @@ body {
     font-weight: 700;
     color: var(--primary-dark);
     letter-spacing: -0.5px;
+    z-index: 1001;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-dark);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
 }
 
 .nav-menu {
@@ -680,42 +701,162 @@ html {
     scroll-behavior: smooth;
 }
 
-@media (max-width: 768px) {
+/* Tablet styles */
+@media (max-width: 1024px) {
     .container {
-        padding: 0 24px;
+        padding: 0 32px;
     }
 
     .hero-title {
-        font-size: 2.75rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.25rem;
-    }
-
-    .hero-description {
-        font-size: 1rem;
-    }
-
-    .nav-menu {
-        gap: 1.5rem;
-        font-size: 0.9rem;
+        font-size: 3.5rem;
     }
 
     .section-title {
-        font-size: 2.25rem;
-    }
-
-    .section {
-        padding: 4rem 0;
+        font-size: 2.5rem;
     }
 
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
     }
 
-    .skills-grid {
+    .navbar {
+        padding: 1rem 0;
+    }
+
+    .nav-brand {
+        font-size: 1.25rem;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 5rem 2rem 2rem;
+        gap: 0;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 1rem 0;
+        font-size: 1rem;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .hero {
+        margin-top: 70px;
+        padding: 4rem 0;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.875rem 1.5rem;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .about-text {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+    }
+
+    .about-details {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .detail-item {
+        padding: 2rem;
+    }
+
+    .resume-section {
+        margin-bottom: 3rem;
+    }
+
+    .resume-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .resume-header h3 {
+        font-size: 1.75rem;
     }
 
     .timeline {
@@ -724,9 +865,136 @@ html {
     
     .timeline-item {
         padding-left: 2rem;
+        margin-bottom: 2rem;
     }
     
     .timeline-marker {
         left: -1.5rem;
+        width: 12px;
+        height: 12px;
+    }
+
+    .timeline-content {
+        padding: 1.5rem;
+    }
+
+    .timeline-content h4 {
+        font-size: 1.125rem;
+    }
+
+    .timeline-description {
+        font-size: 0.9rem;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .achievement-card {
+        padding: 2rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .skill-card {
+        padding: 2rem;
+    }
+
+    .skill-icon {
+        font-size: 2.5rem;
+    }
+
+    .skill-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .project-content {
+        padding: 1.5rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .contact-link {
+        width: 100%;
+        padding: 1.5rem 2rem;
+    }
+
+    .footer {
+        padding: 2rem 0;
+        font-size: 0.85rem;
+    }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .nav-brand {
+        font-size: 1.125rem;
+    }
+
+    .hero {
+        padding: 3rem 0;
+    }
+
+    .hero-title {
+        font-size: 1.875rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-description {
+        font-size: 0.875rem;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .section {
+        padding: 2.5rem 0;
+    }
+
+    .detail-item,
+    .achievement-card,
+    .skill-card {
+        padding: 1.5rem;
+    }
+
+    .timeline-content {
+        padding: 1.25rem;
+    }
+
+    .project-content {
+        padding: 1.25rem;
+    }
+
+    .contact-link {
+        padding: 1.25rem 1.5rem;
     }
 }
