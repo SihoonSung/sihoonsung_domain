@@ -79,7 +79,7 @@ body {
     letter-spacing: -0.5px;
     z-index: 1001;
     flex-shrink: 0;
-    margin-right: auto;
+    margin-right: 5rem;
 }
 
 .nav-toggle {
