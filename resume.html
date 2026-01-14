@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Caleb Sung - Resume | Stony Brook University CS Student">
+    <meta name="keywords" content="Caleb Sung, 성시훈, Resume, CV, Stony Brook University, Computer Science">
+    <meta name="author" content="Caleb Sung">
+    <link rel="canonical" href="https://sihoonsung.com/resume.html">
+    <title>Caleb Sung | Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .resume-page {
+            margin-top: 80px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 80px);
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .resume-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-header .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .resume-header .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .resume-header .contact-info a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .resume-header .contact-info a:hover {
+            color: var(--accent-gold);
+        }
+
+        .resume-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .resume-section {
+            margin-bottom: 4rem;
+        }
+
+        .resume-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-gold);
+            display: inline-block;
+        }
+
+        .resume-item {
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+            border-left: 3px solid var(--accent-gold);
+            padding-bottom: 1.5rem;
+        }
+
+        .resume-item:last-child {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .resume-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .resume-item-title {
+            font-size: 1.375rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .resume-item-date {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .resume-item-subtitle {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .resume-item-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .resume-item-description ul {
+            margin-top: 0.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .resume-item-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .skill-category h4 {
+            color: var(--primary-dark);
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-category li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .skill-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .download-btn:hover {
+            background: #e5c84a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .resume-page {
+                margin-top: 70px;
+                padding: 2rem 0;
+            }
+
+            .resume-header h1 {
+                font-size: 2rem;
+            }
+
+            .resume-header .subtitle {
+                font-size: 1rem;
+            }
+
+            .resume-header .contact-info {
+                flex-direction: column;
+                gap: 0.75rem;
+                font-size: 0.875rem;
+            }
+
+            .resume-section-title {
+                font-size: 1.5rem;
+            }
+
+            .resume-item {
+                padding-left: 1.5rem;
+            }
+
+            .resume-item-header {
+                flex-direction: column;
+            }
+
+            .resume-item-title {
+                font-size: 1.125rem;
+            }
+
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Caleb Sung</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="resume-page">
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+
+            <div class="resume-header">
+                <h1>Caleb Sung / 성시훈</h1>
+                <p class="subtitle">Computer Science Student</p>
+                <div class="contact-info">
+                    <a href="mailto:sihoon.sung@stonybrook.edu">
+                        <i class="fas fa-envelope"></i> sihoon.sung@stonybrook.edu
+                    </a>
+                    <a href="https://www.linkedin.com/in/sihoonsung/" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+
+            <div class="resume-content">
+                <!-- Education Section -->
+                <div class="resume-section">
+                    <h2 class="resume-section-title">Education</h2>
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <div>
+                                <h3 class="resume-item-title">Stony Brook University</h3>
+                                <p class="resume-item-subtitle">Bachelor of Science in Computer Science</p>
+                            </div>
+                            <span class="resume-item-date">2021 - Present</span>
+                        </div>
+                        <div class="resume-item-description">
+                            <p>Pursuing a degree in Computer Science with focus on algorithms, data structures, software engineering, and system design. Actively engaged in coursework and projects that build strong technical foundations.</p>
+                            <ul>
+                                <li>Relevant Coursework: Data Structures, Algorithms, Software Engineering, System Design, Operating Systems</li>
+                                <li>Maintaining strong academic performance while working on personal projects</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience & Projects Section -->
+                <div class="resume-section">
+                    <h2 class="resume-section-title">Experience & Projects</h2>
+                    
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <div>
+                                <h3 class="resume-item-title">Algorithm Problem Solving</h3>
+                                <p class="resume-item-subtitle">Personal Project</p>
+                            </div>
+                            <span class="resume-item-date">2024 - Present</span>
+                        </div>
+                        <div class="resume-item-description">
+                            <p>Continuously solving algorithmic challenges to enhance problem-solving skills and coding proficiency across various platforms.</p>
+                            <ul>
+                                <li>Regular practice on competitive programming platforms</li>
+                                <li>Focus on optimization and efficient algorithm design</li>
+                                <li>Building a comprehensive collection of solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <div>
+                                <h3 class="resume-item-title">Connected Components Project</h3>
+                                <p class="resume-item-subtitle">CSE373 Course Project</p>
+                            </div>
+                            <span class="resume-item-date">2024</span>
+                        </div>
+                        <div class="resume-item-description">
+                            <p>Developed a graph algorithm-based program for analyzing connected components, implementing efficient traversal and analysis techniques.</p>
+                            <ul>
+                                <li>Implemented graph traversal algorithms (DFS, BFS)</li>
+                                <li>Optimized for performance with large datasets</li>
+                                <li>Applied data structures knowledge to solve real-world problems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills Section -->
+                <div class="resume-section">
+                    <h2 class="resume-section-title">Technical Skills</h2>
+                    <div class="skills-list">
+                        <div class="skill-category">
+                            <h4>Programming Languages</h4>
+                            <ul>
+                                <li>Python</li>
+                                <li>Java</li>
+                                <li>C</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Web Technologies</h4>
+                            <ul>
+                                <li>HTML5</li>
+                                <li>CSS3</li>
+                                <li>JavaScript</li>
+                                <li>Responsive Design</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools & Technologies</h4>
+                            <ul>
+                                <li>Git & GitHub</li>
+                                <li>Data Structures</li>
+                                <li>Algorithms</li>
+                                <li>Software Engineering</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Section -->
+                <div class="resume-section">
+                    <h2 class="resume-section-title">Achievements & Certifications</h2>
+                    <div class="resume-item">
+                        <div class="resume-item-description">
+                            <p>To be updated</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Caleb Sung. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
