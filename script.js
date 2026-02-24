@@ -43,20 +43,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function initParticles() {
             particles = [];
-            const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 12000));
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const area = canvas.width * canvas.height;
+            const count = isMobile
+                ? Math.min(25, Math.floor(area / 25000))
+                : Math.min(80, Math.floor(area / 12000));
             for (let i = 0; i < count; i++) {
                 particles.push(new Particle());
             }
         }
 
         function connectParticles() {
+            const maxDist = window.matchMedia('(max-width: 768px)').matches ? 100 : 150;
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 150) {
-                        const opacity = (1 - dist / 150) * 0.15;
+                    if (dist < maxDist) {
+                        const opacity = (1 - dist / maxDist) * 0.15;
                         ctx.beginPath();
                         ctx.strokeStyle = `rgba(212, 168, 75, ${opacity})`;
                         ctx.lineWidth = 0.5;
@@ -207,6 +212,54 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ═══════════════════════════════════════
+    // MOBILE NAV TOGGLE
+    // ═══════════════════════════════════════
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    function closeMobileMenu() {
+        if (navMenu && navMenu.classList.contains('is-open')) {
+            navMenu.classList.remove('is-open');
+            if (navToggle) {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', '메뉴 열기');
+            }
+            document.body.classList.remove('menu-open');
+        }
+    }
+
+    function openMobileMenu() {
+        if (navMenu) {
+            navMenu.classList.add('is-open');
+            if (navToggle) {
+                navToggle.setAttribute('aria-expanded', 'true');
+                navToggle.setAttribute('aria-label', '메뉴 닫기');
+            }
+            document.body.classList.add('menu-open');
+        }
+    }
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+            if (navMenu.classList.contains('is-open')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+    }
+
+    // ═══════════════════════════════════════
     // SMOOTH SCROLL FOR NAV LINKS
     // ═══════════════════════════════════════
     const allNavLinks = document.querySelectorAll('.nav-menu a[href^="#"], .hero-buttons a[href^="#"]');
@@ -216,6 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const href = this.getAttribute('href');
             if (href.startsWith('#')) {
                 e.preventDefault();
+                closeMobileMenu();
                 const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
 
