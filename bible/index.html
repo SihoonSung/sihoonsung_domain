@@ -300,6 +300,43 @@
         }
         .name-result i { font-size: 1.1rem; }
 
+        /* 퀴즈 통과 버튼 */
+        .unlock-btn {
+            display: none;
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #d4a84b, #c49035);
+            color: #06080f;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .unlock-btn.show { display: block; }
+        .unlock-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        .locked-card {
+            opacity: 0.35;
+            pointer-events: none;
+            user-select: none;
+            transition: opacity 0.4s;
+        }
+        .locked-card.unlocked {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lock-notice {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .lock-notice.hide { display: none; }
 
         footer {
             text-align: center;
@@ -398,11 +435,15 @@
                 <div class="score-label">/ 5문제</div>
                 <div class="score-msg" id="scoreMsg"></div>
             </div>
+            <button class="unlock-btn" id="unlockBtn" onclick="unlockChecker()">
+                <i class="fas fa-unlock-alt"></i> 다음 묵상자 확인하러 가기
+            </button>
         </div>
 
         <!-- 다음 묵상자 확인 -->
-        <div class="card">
+        <div class="card locked-card" id="checkerCard">
             <p class="card-title"><i class="fas fa-user-check"></i> 다음 묵상자 확인</p>
+            <p class="lock-notice" id="lockNotice"><i class="fas fa-lock"></i> 퀴즈 4개 이상 맞춰야 확인할 수 있어요</p>
             <div class="name-check">
                 <input type="text" class="name-input" id="nameInput" placeholder="이름을 입력하세요" maxlength="10">
                 <button class="check-btn" onclick="checkName()">확인</button>
@@ -492,6 +533,16 @@
             const msgs = ['다시 한번 읽어보세요!', '조금 더 읽어보면 좋을 것 같아요.', '절반 왔어요!', '잘 읽으셨네요!', '거의 다 맞추셨어요!', '완벽해요! 묵상을 꼼꼼히 읽으셨네요 👏'];
             document.getElementById('scoreMsg').textContent = msgs[score];
             scoreEl.classList.add('show');
+            if (score >= 4) {
+                document.getElementById('unlockBtn').classList.add('show');
+            }
+        }
+
+        function unlockChecker() {
+            const card = document.getElementById('checkerCard');
+            card.classList.add('unlocked');
+            document.getElementById('lockNotice').classList.add('hide');
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         // 이름 확인
