@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성경묵상 | Bible Devotion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #06080f;
+            --primary-navy: #0d1224;
+            --primary-charcoal: #1a2035;
+            --accent-gold: #d4a84b;
+            --accent-gold-light: #f5e6c0;
+            --accent-gold-dim: rgba(212, 168, 75, 0.15);
+            --accent-teal: #3a9e9e;
+            --text-primary: #eef0f6;
+            --text-secondary: #9ca3b8;
+            --bg-card: rgba(16, 20, 40, 0.6);
+            --border-color: rgba(212, 168, 75, 0.12);
+            --border-glow: rgba(212, 168, 75, 0.25);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-gold: 0 8px 32px rgba(212, 168, 75, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #06080f 0%, #0d1224 50%, #1a2035 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 24px;
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 100;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 1; }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .page-header .date-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .page-header h1 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #d4a84b, #f5e6c0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+        .page-header .verse-ref {
+            font-size: 0.95rem;
+            color: var(--accent-teal);
+        }
+
+        /* Card base */
+        .card {
+            background: rgba(16, 20, 40, 0.55);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 28px;
+            backdrop-filter: blur(10px);
+        }
+        .card-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Verse card */
+        .verse-text {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--accent-gold-light);
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 20px;
+            margin-bottom: 28px;
+        }
+
+        /* Devotion text */
+        .devotion-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+        .devotion-text p + p {
+            margin-top: 16px;
+        }
+        .read-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .read-toggle:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+        .devotion-body {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease;
+        }
+        .devotion-body.open {
+            max-height: 2000px;
+        }
+
+        /* Quiz */
+        .quiz-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .quiz-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+        .quiz-question {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+        .quiz-question span {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-left: 6px;
+        }
+        .ox-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .ox-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .ox-btn:hover { border-color: var(--accent-gold); color: var(--text-primary); }
+        .ox-btn.correct {
+            background: rgba(58, 158, 100, 0.2);
+            border-color: #3a9e64;
+            color: #6ee7a0;
+        }
+        .ox-btn.wrong {
+            background: rgba(180, 60, 60, 0.2);
+            border-color: #b43c3c;
+            color: #f87171;
+        }
+        .ox-btn.dimmed {
+            opacity: 0.35;
+        }
+        .quiz-feedback {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: none;
+            line-height: 1.6;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct-msg { color: #6ee7a0; }
+        .quiz-feedback.wrong-msg { color: #fca5a5; }
+
+        /* Score */
+        .quiz-score {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        .quiz-score.show { display: block; }
+        .score-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d4a84b, #f5e6c0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .score-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .score-msg {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        /* Next devotion checker */
+        .name-check {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 0;
+        }
+        .name-input {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .name-input::placeholder { color: var(--text-secondary); opacity: 0.6; }
+        .name-input:focus { border-color: var(--accent-gold); }
+        .check-btn {
+            background: linear-gradient(135deg, #d4a84b, #c49035);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            color: #06080f;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .check-btn:hover { opacity: 0.85; }
+
+        .name-result {
+            margin-top: 16px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        .name-result.show { display: flex; }
+        .name-result.yes {
+            background: rgba(58, 158, 100, 0.12);
+            border: 1px solid rgba(58, 158, 100, 0.3);
+            color: #6ee7a0;
+        }
+        .name-result.no {
+            background: rgba(212, 168, 75, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .name-result i { font-size: 1.1rem; }
+
+        .member-order {
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+        .member-order-title {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .member-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .member-chip {
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .member-chip.next {
+            background: rgba(212, 168, 75, 0.15);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+        .member-chip .badge {
+            font-size: 0.7rem;
+            background: var(--accent-gold);
+            color: #06080f;
+            padding: 1px 6px;
+            border-radius: 8px;
+            margin-left: 4px;
+            font-weight: 700;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            padding-bottom: 40px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> sihoonsung.com</a>
+
+    <div class="container">
+        <div class="page-header">
+            <p class="date-label" id="today-date"></p>
+            <h1>오늘의 성경묵상</h1>
+            <p class="verse-ref">출애굽기 13:17</p>
+        </div>
+
+        <!-- 본문 + 묵상 -->
+        <div class="card">
+            <p class="card-title"><i class="fas fa-book-open"></i> 본문</p>
+            <blockquote class="verse-text">
+                "하나님이 홍해 길로 그들을 인도하지 아니하셨으니 이는 하나님이 말씀하시기를 이 백성이 전쟁을 보면 마음을 돌이켜 애굽으로 돌아갈까 하셨음이라."
+            </blockquote>
+            <button class="read-toggle" onclick="toggleDevotion(this)">
+                <i class="fas fa-chevron-down"></i> 묵상 읽기
+            </button>
+            <div class="devotion-body" id="devotionBody">
+                <div class="devotion-text" style="margin-top: 20px;">
+                    <p>출애굽 이야기를 보면서 마음에 남는 것은, 하나님은 이스라엘 백성을 바로 빠른 길로 데려가지 않으셨다는 것입니다. 사람의 생각에는 빠른 길이 더 좋아 보이지만, 하나님은 이미 백성들의 상태를 알고 계셨습니다. 아직 준비되지 않은 마음과, 힘든 일을 만나면 다시 애굽으로 돌아가고 싶어질 그 관성을 하나님은 이미 알고 계셨습니다.</p>
+                    <p>저도 비슷한 것 같습니다. 하나님은 분명히 새로운 길로 이끄시는데, 저는 자꾸 익숙한 쪽으로 돌아가고 싶어질 때가 있습니다. 그 길이 꼭 좋은 길이 아니어도, 익숙하다는 이유만으로 다시 붙잡으려는 마음이 있습니다. 몸은 애굽에서 나왔지만 마음은 아직 다 나오지 못한 것 같다는 생각이 들 때도 있습니다.</p>
+                    <p>관성은 원래 가던 방향으로 계속 가려는 힘인데, 제 믿음도 그런 것 같습니다. 하나님을 믿는다고 하면서도 어렵고 불안한 순간이 오면, 믿음으로 나아가기보다 원래 하던 걱정과 두려움으로 다시 기울어집니다. 그래서 하나님이 저를 천천히 이끄시는 시간도 답답한 것이 아니라 필요한 과정일 수 있겠다고 생각하게 됩니다.</p>
+                    <p>하나님은 백성들의 약함을 아시고도 버리지 않으셨습니다. 오히려 돌아가지 않도록 길을 조절하시고 직접 인도하셨습니다. 저도 지금 이해되지 않는 우회로 같은 시간이 있지만, 하나님은 저를 모르셔서 그렇게 하시는 것이 아니라 저를 알고 계시기 때문에 그렇게 하신다는 것을 믿고 싶습니다.</p>
+                    <p>오늘 묵상하면서, 저도 하나님을 따라간다고 하면서 사실은 익숙한 마음으로 다시 돌아가려 했던 부분이 없는지 돌아보게 됩니다. 관성이 크면 방향을 바꾸는 데 시간이 걸리지만, 하나님이 계속 이끌어 주신다면 저도 조금씩 새로운 방향으로 나아갈 수 있을 것 같습니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- OX 퀴즈 -->
+        <div class="card">
+            <p class="card-title"><i class="fas fa-question-circle"></i> 묵상 확인 퀴즈</p>
+            <div class="quiz-list" id="quizList">
+
+                <div class="quiz-item" data-index="0" data-answer="O">
+                    <p class="quiz-question">Q1. 하나님은 이스라엘 백성이 전쟁을 보면 애굽으로 돌아갈까봐 홍해 길로 인도하지 않으셨다. <span>(출애굽기 13:17)</span></p>
+                    <div class="ox-buttons">
+                        <button class="ox-btn" onclick="checkAnswer(this, 0, 'O')">O</button>
+                        <button class="ox-btn" onclick="checkAnswer(this, 0, 'X')">X</button>
+                    </div>
+                    <p class="quiz-feedback"></p>
+                </div>
+
+                <div class="quiz-item" data-index="1" data-answer="X">
+                    <p class="quiz-question">Q2. 묵상자는 하나님이 빠른 길을 택하지 않으신 것이 이해가 안 된다고 했다.</p>
+                    <div class="ox-buttons">
+                        <button class="ox-btn" onclick="checkAnswer(this, 1, 'O')">O</button>
+                        <button class="ox-btn" onclick="checkAnswer(this, 1, 'X')">X</button>
+                    </div>
+                    <p class="quiz-feedback"></p>
+                </div>
+
+                <div class="quiz-item" data-index="2" data-answer="O">
+                    <p class="quiz-question">Q3. 묵상에서 '관성'은 원래 가던 방향으로 계속 가려는 힘으로 설명되었다.</p>
+                    <div class="ox-buttons">
+                        <button class="ox-btn" onclick="checkAnswer(this, 2, 'O')">O</button>
+                        <button class="ox-btn" onclick="checkAnswer(this, 2, 'X')">X</button>
+                    </div>
+                    <p class="quiz-feedback"></p>
+                </div>
+
+                <div class="quiz-item" data-index="3" data-answer="O">
+                    <p class="quiz-question">Q4. 하나님은 백성의 약함을 아시고도 버리지 않고 오히려 길을 조절하며 인도하셨다.</p>
+                    <div class="ox-buttons">
+                        <button class="ox-btn" onclick="checkAnswer(this, 3, 'O')">O</button>
+                        <button class="ox-btn" onclick="checkAnswer(this, 3, 'X')">X</button>
+                    </div>
+                    <p class="quiz-feedback"></p>
+                </div>
+
+                <div class="quiz-item" data-index="4" data-answer="X">
+                    <p class="quiz-question">Q5. 묵상자는 현재 우회로 같은 시간이 하나님이 자신을 모르셔서 생기는 일이라고 생각했다.</p>
+                    <div class="ox-buttons">
+                        <button class="ox-btn" onclick="checkAnswer(this, 4, 'O')">O</button>
+                        <button class="ox-btn" onclick="checkAnswer(this, 4, 'X')">X</button>
+                    </div>
+                    <p class="quiz-feedback"></p>
+                </div>
+
+            </div>
+
+            <div class="quiz-score" id="quizScore">
+                <div class="score-number" id="scoreNumber"></div>
+                <div class="score-label">/ 5문제</div>
+                <div class="score-msg" id="scoreMsg"></div>
+            </div>
+        </div>
+
+        <!-- 다음 묵상자 확인 -->
+        <div class="card">
+            <p class="card-title"><i class="fas fa-user-check"></i> 다음 묵상자 확인</p>
+            <div class="name-check">
+                <input type="text" class="name-input" id="nameInput" placeholder="이름을 입력하세요" maxlength="10">
+                <button class="check-btn" onclick="checkName()">확인</button>
+            </div>
+            <div class="name-result" id="nameResult">
+                <i></i>
+                <span id="nameResultText"></span>
+            </div>
+
+            <div class="member-order">
+                <p class="member-order-title">묵상 순서</p>
+                <div class="member-list" id="memberList"></div>
+            </div>
+        </div>
+
+        <footer>sihoonsung.com/bible</footer>
+    </div>
+
+    <script>
+        // ── 설정: 여기서 멤버 이름과 다음 순서 인덱스를 수정하세요 ──
+        const MEMBERS = ["신승현", "유재우", "이예준", "이지희", "전호찬", "조영재", "박현영", "성시훈"];
+        const NEXT_INDEX = 0; // 0부터 시작 (0 = 첫 번째 멤버)
+        // ────────────────────────────────────────────────────────────
+
+        // 날짜 표시
+        const today = new Date();
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+        document.getElementById('today-date').textContent = today.toLocaleDateString('ko-KR', dateOptions);
+
+        // 멤버 목록 렌더
+        const memberList = document.getElementById('memberList');
+        MEMBERS.forEach((name, i) => {
+            const chip = document.createElement('div');
+            chip.className = 'member-chip' + (i === NEXT_INDEX ? ' next' : '');
+            chip.innerHTML = name + (i === NEXT_INDEX ? '<span class="badge">NEXT</span>' : '');
+            memberList.appendChild(chip);
+        });
+
+        // 묵상 펼치기
+        function toggleDevotion(btn) {
+            const body = document.getElementById('devotionBody');
+            const isOpen = body.classList.toggle('open');
+            btn.innerHTML = isOpen
+                ? '<i class="fas fa-chevron-up"></i> 묵상 접기'
+                : '<i class="fas fa-chevron-down"></i> 묵상 읽기';
+        }
+
+        // 퀴즈
+        const answers = {};
+        const correctMsg = [
+            "맞아요! 하나님은 백성이 전쟁을 보면 돌아갈까봐 홍해 길을 택하지 않으셨습니다.",
+            "X가 정답이에요. 묵상자는 오히려 우회로 같은 시간이 '필요한 과정'일 수 있다고 했습니다.",
+            "맞아요! 묵상에서 관성을 '원래 가던 방향으로 계속 가려는 힘'으로 표현했습니다.",
+            "맞아요! 하나님은 백성의 약함을 아시고도 길을 조절하며 직접 인도하셨습니다.",
+            "X가 정답이에요. 묵상자는 하나님이 저를 알기 때문에 그렇게 하신다고 믿고 싶다고 했습니다.",
+        ];
+        const wrongMsg = [
+            "아니에요. 본문에 명확히 나와 있어요 — 전쟁을 보면 돌아갈까 하셨음이라.",
+            "O가 아니에요. 묵상자는 우회로 같은 시간도 하나님의 필요한 인도라고 받아들였습니다.",
+            "아니에요. 관성은 묵상에서 원래 방향으로 가려는 힘으로 설명됐습니다.",
+            "아니에요. 하나님은 약함을 아시고도 포기하지 않고 길을 직접 조절하셨습니다.",
+            "O가 아니에요. 묵상자는 하나님이 저를 알기 때문에 우회로로 이끄신다고 믿고 싶다고 했습니다.",
+        ];
+
+        function checkAnswer(btn, index, chosen) {
+            if (answers[index] !== undefined) return;
+            const item = btn.closest('.quiz-item');
+            const correct = item.dataset.answer;
+            const btns = item.querySelectorAll('.ox-btn');
+            const feedback = item.querySelector('.quiz-feedback');
+
+            answers[index] = chosen === correct;
+
+            btns.forEach(b => {
+                const val = b.textContent.trim();
+                if (val === correct) {
+                    b.classList.add('correct');
+                } else {
+                    b.classList.add(chosen === val ? 'wrong' : 'dimmed');
+                }
+            });
+
+            feedback.classList.add('show');
+            if (chosen === correct) {
+                feedback.classList.add('correct-msg');
+                feedback.textContent = '✓ ' + correctMsg[index];
+            } else {
+                feedback.classList.add('wrong-msg');
+                feedback.textContent = '✗ ' + wrongMsg[index];
+            }
+
+            if (Object.keys(answers).length === 5) showScore();
+        }
+
+        function showScore() {
+            const score = Object.values(answers).filter(Boolean).length;
+            const scoreEl = document.getElementById('quizScore');
+            document.getElementById('scoreNumber').textContent = score;
+            const msgs = ['다시 한번 읽어보세요!', '조금 더 읽어보면 좋을 것 같아요.', '절반 왔어요!', '잘 읽으셨네요!', '거의 다 맞추셨어요!', '완벽해요! 묵상을 꼼꼼히 읽으셨네요 👏'];
+            document.getElementById('scoreMsg').textContent = msgs[score];
+            scoreEl.classList.add('show');
+        }
+
+        // 이름 확인
+        function checkName() {
+            const input = document.getElementById('nameInput').value.trim();
+            if (!input) return;
+            const result = document.getElementById('nameResult');
+            const resultText = document.getElementById('nameResultText');
+            const icon = result.querySelector('i');
+
+            const nextName = MEMBERS[NEXT_INDEX];
+            const isNext = input === nextName;
+
+            result.className = 'name-result show ' + (isNext ? 'yes' : 'no');
+            icon.className = isNext ? 'fas fa-check-circle' : 'fas fa-info-circle';
+            resultText.textContent = isNext
+                ? `${input}님, 다음 묵상자입니다!`
+                : `${input}님은 다음 묵상자가 아닙니다. 다음 차례는 ${nextName}님이에요.`;
+        }
+
+        document.getElementById('nameInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') checkName();
+        });
+    </script>
+</body>
+
+</html>
