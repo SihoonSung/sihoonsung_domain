@@ -300,46 +300,6 @@
         }
         .name-result i { font-size: 1.1rem; }
 
-        .member-order {
-            margin-top: 20px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
-        .member-order-title {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-        .member-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .member-chip {
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-        }
-        .member-chip.next {
-            background: rgba(212, 168, 75, 0.15);
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-            font-weight: 600;
-        }
-        .member-chip .badge {
-            font-size: 0.7rem;
-            background: var(--accent-gold);
-            color: #06080f;
-            padding: 1px 6px;
-            border-radius: 8px;
-            margin-left: 4px;
-            font-weight: 700;
-        }
 
         footer {
             text-align: center;
@@ -452,10 +412,6 @@
                 <span id="nameResultText"></span>
             </div>
 
-            <div class="member-order">
-                <p class="member-order-title">묵상 순서</p>
-                <div class="member-list" id="memberList"></div>
-            </div>
         </div>
 
         <footer>sihoonsung.com/bible</footer>
@@ -472,14 +428,6 @@
         const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
         document.getElementById('today-date').textContent = today.toLocaleDateString('ko-KR', dateOptions);
 
-        // 멤버 목록 렌더
-        const memberList = document.getElementById('memberList');
-        MEMBERS.forEach((name, i) => {
-            const chip = document.createElement('div');
-            chip.className = 'member-chip' + (i === NEXT_INDEX ? ' next' : '');
-            chip.innerHTML = name + (i === NEXT_INDEX ? '<span class="badge">NEXT</span>' : '');
-            memberList.appendChild(chip);
-        });
 
         // 묵상 펼치기
         function toggleDevotion(btn) {
