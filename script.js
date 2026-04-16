@@ -100,8 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (subtitleEl) {
         const phrases = [
             'CS Senior at Stony Brook University',
-            'Aspiring Product Manager',
-            'Security-Focused Developer',
+            'Computer Vision Researcher',
+            'Deep Learning Engineer',
             'CEO of CO;Ders Us'
         ];
         let phraseIdx = 0;
@@ -300,6 +300,10 @@ document.addEventListener('DOMContentLoaded', function () {
             ticking = true;
         }
     });
+
+    // Footer year
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
 
     // Initial calls
     updateNavbar();
