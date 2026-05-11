@@ -1,99 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // ═══════════════════════════════════════
-    // PARTICLE ANIMATION
-    // ═══════════════════════════════════════
-    const canvas = document.getElementById('particle-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let animId;
-
-        function resizeCanvas() {
-            const hero = canvas.parentElement;
-            canvas.width = hero.offsetWidth;
-            canvas.height = hero.offsetHeight;
-        }
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.4;
-                this.speedY = (Math.random() - 0.5) * 0.4;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(212, 168, 75, ${this.opacity})`;
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
-            const area = canvas.width * canvas.height;
-            const count = isMobile
-                ? Math.min(25, Math.floor(area / 25000))
-                : Math.min(80, Math.floor(area / 12000));
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function connectParticles() {
-            const maxDist = window.matchMedia('(max-width: 768px)').matches ? 100 : 150;
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < maxDist) {
-                        const opacity = (1 - dist / maxDist) * 0.15;
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(212, 168, 75, ${opacity})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            connectParticles();
-            animId = requestAnimationFrame(animateParticles);
-        }
-
-        resizeCanvas();
-        initParticles();
-        animateParticles();
-
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            initParticles();
-        });
-    }
-
-    // ═══════════════════════════════════════
     // TYPING EFFECT
     // ═══════════════════════════════════════
     const subtitleEl = document.getElementById('typed-subtitle');
@@ -122,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (!isDeleting && charIdx === current.length) {
-                speed = 2000;
+                speed = 2200;
                 isDeleting = true;
             } else if (isDeleting && charIdx === 0) {
                 isDeleting = false;
@@ -133,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(typeEffect, speed);
         }
 
-        setTimeout(typeEffect, 600);
+        setTimeout(typeEffect, 700);
     }
 
     // ═══════════════════════════════════════
@@ -146,14 +53,12 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateNavbar() {
         const scrollY = window.pageYOffset;
 
-        // Scrolled state
         if (scrollY > 80) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
 
-        // Active section highlighting
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 120;
             const sectionHeight = section.offsetHeight;
@@ -187,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // SCROLL REVEAL
     // ═══════════════════════════════════════
     const revealObserver = new IntersectionObserver(function (entries) {
-        entries.forEach((entry, idx) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const delay = entry.target.dataset.delay || 0;
                 setTimeout(() => {
@@ -197,17 +102,15 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px'
     });
 
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el, index) => {
-        // Staggered delay for sibling items
+    document.querySelectorAll('.reveal').forEach((el) => {
         const parent = el.parentElement;
         const siblings = parent.querySelectorAll('.reveal');
         const siblingIndex = Array.from(siblings).indexOf(el);
-        el.dataset.delay = siblingIndex * 100;
+        el.dataset.delay = siblingIndex * 80;
         revealObserver.observe(el);
     });
 
@@ -272,15 +175,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 closeMobileMenu();
                 const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
-
                 if (targetElement) {
                     const navHeight = navbar.offsetHeight;
                     const targetPosition = targetElement.offsetTop - navHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             }
         });
@@ -305,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const footerYear = document.getElementById('footer-year');
     if (footerYear) footerYear.textContent = new Date().getFullYear();
 
-    // Initial calls
     updateNavbar();
     updateProgress();
 });

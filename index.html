@@ -14,9 +14,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -37,32 +35,56 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="Sihoon_Sung_Resume.pdf" target="_blank" class="nav-resume-btn"><i
-                            class="fas fa-file-pdf"></i> Resume</a></li>
+                <li><a href="Sihoon_Sung_Resume.pdf" target="_blank" class="nav-resume-btn"><i class="fas fa-file-pdf"></i> Resume</a></li>
             </ul>
         </div>
     </nav>
 
     <section class="hero">
-        <canvas id="particle-canvas"></canvas>
+        <div class="hero-bg">
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+            <div class="hero-blob hero-blob-3"></div>
+            <div class="hero-grid-dots"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <p class="hero-greeting">Hello, I'm</p>
-                    <h1 class="hero-title">Sihoon Sung</h1>
-                    <p class="hero-subtitle" id="typed-subtitle"></p>
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        Open to opportunities
+                    </div>
+                    <h1 class="hero-title">
+                        Sihoon<br>
+                        <span class="hero-title-accent">Sung</span>
+                    </h1>
+                    <p class="hero-subtitle"><span id="typed-subtitle"></span><span class="hero-cursor"></span></p>
                     <p class="hero-description">CS senior at Stony Brook University with experience in computer vision and deep learning — building models and products that bridge AI with real-world problems.</p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">Get in Touch</a>
                         <a href="#projects" class="btn btn-secondary">View Projects</a>
-                        <a href="Sihoon_Sung_Resume.pdf" target="_blank" class="btn btn-resume"><i
-                                class="fas fa-download"></i> Resume</a>
+                        <a href="Sihoon_Sung_Resume.pdf" target="_blank" class="btn btn-resume"><i class="fas fa-download"></i> Resume</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <div class="hero-image-wrapper">
+                    <div class="hero-image-frame">
+                        <div class="hero-image-deco"></div>
+                        <div class="hero-image-deco-2"></div>
                         <img src="수정.jpg" alt="Sihoon Sung" class="profile-image">
-                        <div class="hero-image-glow"></div>
+                        <div class="hero-stat-chip hero-stat-chip-1">
+                            <div class="chip-icon chip-icon-blue"><i class="fas fa-eye"></i></div>
+                            <div>
+                                <div class="chip-text-label">Focus</div>
+                                <div class="chip-text-value">Computer Vision</div>
+                            </div>
+                        </div>
+                        <div class="hero-stat-chip hero-stat-chip-2">
+                            <div class="chip-icon chip-icon-purple"><i class="fas fa-users"></i></div>
+                            <div>
+                                <div class="chip-text-label">Community</div>
+                                <div class="chip-text-value">200+ Members</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,26 +93,36 @@
 
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">About</h2>
-            <div class="about-content">
-                <p class="about-text reveal">
-                    Computer Science senior at Stony Brook University with hands-on experience in deep learning for computer vision — CNNs and Vision Transformers in PyTorch — and a background in network infrastructure from military service. Interested in vision-based inspection, quality control, and building software that bridges AI with real-world problems.
+            <div class="section-header">
+                <span class="section-label">About</span>
+                <h2 class="section-title">Who I am</h2>
+            </div>
+            <div class="about-layout">
+                <p class="about-body reveal">
+                    Computer Science senior at Stony Brook University with hands-on experience in deep learning for computer vision — CNNs and Vision Transformers in PyTorch — and a background in network infrastructure from military service.<br><br>
+                    Interested in vision-based inspection, quality control, and building software that bridges AI with real-world problems. I also lead CO;Ders Us, a 200+ member coding community connecting US and Korean developers.
                 </p>
-                <div class="about-details">
-                    <div class="detail-item reveal">
-                        <div class="detail-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <h3>Education</h3>
-                        <p>B.S. in Computer Science<br>Stony Brook University<br>Expected May 2026</p>
+                <div class="about-cards">
+                    <div class="about-card reveal">
+                        <div class="about-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="about-card-body">
+                            <h4>Education</h4>
+                            <p>B.S. in Computer Science<br>Stony Brook University · Expected May 2026</p>
+                        </div>
                     </div>
-                    <div class="detail-item reveal">
-                        <div class="detail-icon"><i class="fas fa-eye"></i></div>
-                        <h3>Focus</h3>
-                        <p>Computer Vision &amp; Deep Learning<br>Vision-based inspection &amp; quality control</p>
+                    <div class="about-card reveal">
+                        <div class="about-card-icon"><i class="fas fa-eye"></i></div>
+                        <div class="about-card-body">
+                            <h4>Focus Area</h4>
+                            <p>Computer Vision &amp; Deep Learning<br>Vision-based inspection &amp; quality control</p>
+                        </div>
                     </div>
-                    <div class="detail-item reveal">
-                        <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <h3>Location</h3>
-                        <p>East Patchogue, New York</p>
+                    <div class="about-card reveal">
+                        <div class="about-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="about-card-body">
+                            <h4>Location</h4>
+                            <p>East Patchogue, New York</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,7 +131,10 @@
 
     <section id="resume" class="section section-alt">
         <div class="container">
-            <h2 class="section-title">Resume</h2>
+            <div class="section-header">
+                <span class="section-label">Resume</span>
+                <h2 class="section-title">Experience &amp; Education</h2>
+            </div>
 
             <div class="resume-download-bar reveal">
                 <a href="Sihoon_Sung_Resume.pdf" target="_blank" class="btn-download-resume">
@@ -107,16 +142,19 @@
                 </a>
             </div>
 
-            <div class="resume-container">
-                <div class="resume-section">
-                    <div class="resume-header reveal">
-                        <div class="resume-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div class="resume-grid">
+                <div>
+                    <div class="resume-group-label reveal">
+                        <div class="resume-group-icon"><i class="fas fa-graduation-cap"></i></div>
                         <h3>Education</h3>
                     </div>
                     <div class="timeline">
                         <div class="timeline-item reveal">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
+                            <div class="timeline-left">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-body">
                                 <div class="timeline-date">2020 – 2026 (Expected)</div>
                                 <h4>Stony Brook University</h4>
                                 <p class="timeline-subtitle">B.S. in Computer Science</p>
@@ -126,15 +164,18 @@
                     </div>
                 </div>
 
-                <div class="resume-section">
-                    <div class="resume-header reveal">
-                        <div class="resume-icon"><i class="fas fa-briefcase"></i></div>
+                <div>
+                    <div class="resume-group-label reveal">
+                        <div class="resume-group-icon"><i class="fas fa-briefcase"></i></div>
                         <h3>Experience</h3>
                     </div>
                     <div class="timeline">
                         <div class="timeline-item reveal">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
+                            <div class="timeline-left">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-body">
                                 <div class="timeline-date">Jan 2021 – Present</div>
                                 <h4>Chief Executive Officer</h4>
                                 <p class="timeline-subtitle">CO;Ders Us (Nonprofit)</p>
@@ -142,8 +183,11 @@
                             </div>
                         </div>
                         <div class="timeline-item reveal">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
+                            <div class="timeline-left">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-body">
                                 <div class="timeline-date">Aug 2024 – Oct 2024</div>
                                 <h4>Web Developer Intern</h4>
                                 <p class="timeline-subtitle">Haeun EnC</p>
@@ -151,8 +195,11 @@
                             </div>
                         </div>
                         <div class="timeline-item reveal">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
+                            <div class="timeline-left">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-body">
                                 <div class="timeline-date">Oct 2022 – Jul 2024</div>
                                 <h4>Network &amp; Telecommunications Specialist</h4>
                                 <p class="timeline-subtitle">Republic of Korea Air Force</p>
@@ -162,9 +209,9 @@
                     </div>
                 </div>
 
-                <div class="resume-section">
-                    <div class="resume-header reveal">
-                        <div class="resume-icon"><i class="fas fa-book-open"></i></div>
+                <div class="resume-full-width">
+                    <div class="resume-group-label reveal">
+                        <div class="resume-group-icon"><i class="fas fa-book-open"></i></div>
                         <h3>Relevant Coursework</h3>
                     </div>
                     <div class="coursework-grid">
@@ -184,11 +231,15 @@
 
     <section id="skills" class="section">
         <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-categories">
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon"><i class="fas fa-eye"></i></div>
+            <div class="section-header section-header-centered">
+                <span class="section-label">Skills</span>
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">Tools and technologies I work with to build intelligent, production-ready systems.</p>
+            </div>
+            <div class="skills-layout">
+                <div class="skill-group reveal">
+                    <div class="skill-group-header">
+                        <div class="skill-group-icon"><i class="fas fa-eye"></i></div>
                         <h3>Computer Vision &amp; ML</h3>
                     </div>
                     <div class="skill-tags">
@@ -198,14 +249,23 @@
                         <span class="skill-tag">ResNet</span>
                         <span class="skill-tag">Vision Transformer (ViT)</span>
                         <span class="skill-tag">CNN</span>
+                        <span class="skill-tag">EfficientNet</span>
+                        <span class="skill-tag">YOLO</span>
+                        <span class="skill-tag">Detectron2</span>
+                        <span class="skill-tag">Spike-Driven Transformer</span>
+                        <span class="skill-tag">Transfer Learning</span>
+                        <span class="skill-tag">Data Augmentation</span>
                         <span class="skill-tag">Google Vision API</span>
                         <span class="skill-tag">GPT-4V</span>
                         <span class="skill-tag">Image Preprocessing</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Matplotlib</span>
                     </div>
                 </div>
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon"><i class="fas fa-code"></i></div>
+                <div class="skill-group reveal">
+                    <div class="skill-group-header">
+                        <div class="skill-group-icon"><i class="fas fa-code"></i></div>
                         <h3>Languages</h3>
                     </div>
                     <div class="skill-tags">
@@ -216,11 +276,12 @@
                         <span class="skill-tag">C</span>
                         <span class="skill-tag">Swift</span>
                         <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Bash</span>
                     </div>
                 </div>
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="skill-group reveal">
+                    <div class="skill-group-header">
+                        <div class="skill-group-icon"><i class="fas fa-layer-group"></i></div>
                         <h3>Frameworks &amp; Tools</h3>
                     </div>
                     <div class="skill-tags">
@@ -233,6 +294,9 @@
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">MongoDB</span>
                         <span class="skill-tag">Wireshark</span>
+                        <span class="skill-tag">REST API</span>
+                        <span class="skill-tag">Jupyter</span>
+                        <span class="skill-tag">CUDA</span>
                     </div>
                 </div>
             </div>
@@ -241,78 +305,93 @@
 
     <section id="projects" class="section section-alt">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
+            <div class="section-header">
+                <span class="section-label">Projects</span>
+                <h2 class="section-title">Selected Work</h2>
+            </div>
             <div class="projects-grid">
                 <div class="project-card reveal">
-                    <div class="project-image">
+                    <div class="project-header">
+                        <div class="project-header-pattern"></div>
                         <div class="image-placeholder"><i class="fas fa-film"></i></div>
                     </div>
-                    <div class="project-content">
+                    <div class="project-body">
                         <p class="project-course">CSE 327 · Computer Vision</p>
                         <h3>Movie Genre Classification</h3>
                         <p>Compared ResNet-18, ViT-Base/16, and Spike-Driven Transformer on a 40K+ Kaggle poster dataset for multi-class genre classification across 25 categories. Built the full data pipeline with ImageNet normalization and Poisson spike-encoding for SDT input.</p>
-                        <div class="project-tags">
-                            <span class="tag">PyTorch</span>
-                            <span class="tag">timm</span>
-                            <span class="tag">ViT</span>
-                            <span class="tag">ResNet</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/SihoonSung" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Code</a>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">PyTorch</span>
+                                <span class="tag">timm</span>
+                                <span class="tag">ViT</span>
+                                <span class="tag">ResNet</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/SihoonSung" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Code</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="project-card reveal">
-                    <div class="project-image">
+                    <div class="project-header">
+                        <div class="project-header-pattern"></div>
                         <div class="image-placeholder"><i class="fas fa-camera"></i></div>
                     </div>
-                    <div class="project-content">
+                    <div class="project-body">
                         <p class="project-course">Ingredient Recognition &amp; Recipe Recommendation</p>
                         <h3>BABSIM</h3>
                         <p>Web app that identifies ingredients inside a user's fridge from a photo and recommends recipes. Integrated Google Vision API for object detection and GPT-4V for OCR on packaged food labels to improve ingredient coverage for processed items.</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Google Vision API</span>
-                            <span class="tag">GPT-4V</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/SihoonSung" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Code</a>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Google Vision API</span>
+                                <span class="tag">GPT-4V</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/SihoonSung" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Code</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="project-card reveal">
-                    <div class="project-image">
+                    <div class="project-header">
+                        <div class="project-header-pattern"></div>
                         <div class="image-placeholder"><i class="fas fa-mobile-alt"></i></div>
                     </div>
-                    <div class="project-content">
+                    <div class="project-body">
                         <p class="project-course">iOS Dashboard for Personal AI Agent</p>
                         <h3>Friday</h3>
                         <p>iOS companion app for OpenClaw, an open-source project that turns a personal computer into an AI agent. Dashboard displays live task and agent execution status and lets users inspect run history from their phone.</p>
-                        <div class="project-tags">
-                            <span class="tag">Swift</span>
-                            <span class="tag">SwiftUI</span>
-                            <span class="tag">REST</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/SihoonSung" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Code</a>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">Swift</span>
+                                <span class="tag">SwiftUI</span>
+                                <span class="tag">REST</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/SihoonSung" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Code</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="project-card reveal">
-                    <div class="project-image">
+                    <div class="project-header">
+                        <div class="project-header-pattern"></div>
                         <div class="image-placeholder"><i class="fas fa-baseball-ball"></i></div>
                     </div>
-                    <div class="project-content">
+                    <div class="project-body">
                         <p class="project-course">CSE 316 · Baseball Community Platform</p>
                         <h3>Dugout</h3>
                         <p>Community web app with player and team stat pages, user accounts, and discussion threads. Built a normalized MySQL schema with query optimization for common lookups.</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">MySQL</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/SihoonSung" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Code</a>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">MySQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/SihoonSung" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Code</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -322,21 +401,34 @@
 
     <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-content">
-                <p class="contact-text reveal">I'm always open to discussing research opportunities, new projects, or collaborations. Feel free to reach out!</p>
-                <div class="contact-links">
-                    <a href="mailto:sihoon@coders.org" class="contact-link reveal">
-                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-                        <span>Email</span>
-                    </a>
-                    <a href="https://github.com/SihoonSung" target="_blank" class="contact-link reveal">
-                        <span class="contact-icon"><i class="fab fa-github"></i></span>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://linkedin.com/in/sihoonsung" target="_blank" class="contact-link reveal">
-                        <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
-                        <span>LinkedIn</span>
+            <div class="contact-layout">
+                <div>
+                    <div class="section-header">
+                        <span class="section-label">Contact</span>
+                        <h2 class="section-title">Let's work<br>together</h2>
+                    </div>
+                    <p class="contact-text reveal">I'm always open to discussing research opportunities, new projects, or collaborations. Feel free to reach out through any of the channels below.</p>
+                    <div class="contact-links">
+                        <a href="mailto:calebsung00@gmail.com" class="contact-link reveal">
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <span>calebsung00@gmail.com</span>
+                        </a>
+                        <a href="https://github.com/SihoonSung" target="_blank" class="contact-link reveal">
+                            <span class="contact-icon"><i class="fab fa-github"></i></span>
+                            <span>github.com/SihoonSung</span>
+                        </a>
+                        <a href="https://linkedin.com/in/sihoonsung" target="_blank" class="contact-link reveal">
+                            <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
+                            <span>linkedin.com/in/sihoonsung</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-cta-box reveal">
+                    <span class="contact-cta-tag">Available for opportunities</span>
+                    <h3>Open to research &amp; engineering roles</h3>
+                    <p>Graduating May 2026 and actively exploring full-time positions in computer vision, deep learning, and software engineering.</p>
+                    <a href="mailto:calebsung00@gmail.com" class="btn-cta">
+                        <i class="fas fa-paper-plane"></i> Send a Message
                     </a>
                 </div>
             </div>
