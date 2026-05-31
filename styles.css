@@ -436,26 +436,11 @@ body {
 }
 
 .hero-image-deco {
-    position: absolute;
-    top: -16px;
-    right: -16px;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--radius-xl);
-    border: 2px solid var(--border);
-    z-index: 0;
+    display: none;
 }
 
 .hero-image-deco-2 {
-    position: absolute;
-    bottom: -12px;
-    left: -12px;
-    width: 80px;
-    height: 80px;
-    border-radius: var(--radius-md);
-    background: var(--accent-dim);
-    border: 2px solid rgba(79, 126, 255, 0.2);
-    z-index: 0;
+    display: none;
 }
 
 .profile-image {
@@ -496,13 +481,13 @@ body {
 
 .hero-stat-chip-1 {
     top: 14%;
-    left: -20px;
+    left: -10px;
     animation-delay: 0s;
 }
 
 .hero-stat-chip-2 {
     bottom: 16%;
-    right: -20px;
+    right: -10px;
     animation-delay: 3s;
 }
 
